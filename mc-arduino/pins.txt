@@ -1,4 +1,11 @@
-pin	color	arduino pin	display		+/-
+pin          =  just a number from 1 to 12
+color        =  cable color (visible on img/display.png)
+arduino pin  =  arduino pin of course :)
+display pin  =  number: a ground of display `x`, letter(s): segment `x`
++/-          =  + if it is a positive pin (connected to a positive end of the LED inside the display), else -
+
+
+pin	color	arduino pin	display pin	+/-
  1	brown	A0		a		+
  2	white	 8		b		+
  3	purple	A1		f		+
