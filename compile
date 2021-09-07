@@ -9,7 +9,7 @@
 
 
 # build with gradle
-./gradlew build &&
+./gradlew build || exit 1
 
 # build folder
 bf="build/libs"

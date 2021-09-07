@@ -1,0 +1,13 @@
+pin	color	arduino pin	display		+/-
+ 1	brown	A0		a		+
+ 2	white	 8		b		+
+ 3	purple	A1		f		+
+ 4	black	 7		g		+
+ 5	red	A2		4		-
+ 6	blue	 6		3		-
+ 7	pink	A3		2		-
+ 8	grey	 5		1		-
+ 9	yellow	A4		e		+
+10	green	 4		d		+
+11	brown	 3		dp		+
+12	white	 2		c		+
