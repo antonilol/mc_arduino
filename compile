@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# hi !linux users:
+# this script will work on linux but surely not on w!nd0w$
+# w!nd0w$ users: use wsl, prebuilt releases, make a batch script
+# (and be so kind to make a pull), do it by hand every time,
+# switch to linux or fix my build.gradle (and again, be so kind
+# to make a pull), more info in build.gradle
+
+
+# build with gradle
+./gradlew build &&
+
+# build folder
+bf="build/libs"
+# temporary folder (for best speeds use a tmpfs (/tmp is one)
+tf="/tmp/build"
+
+# to extract version and archives base name
+file="gradle.properties"
+
+# version
+ver=$(cat "$file" | grep mod_version        | sed 's/.*= //')
+# basename
+bn=$(cat "$file"  | grep archives_base_name | sed 's/.*= //')
+# output file
+of="$bn-$ver.jar"
+
+
+# start clean
+rm -rf "$tf"
+mkdir -p "$tf"
+
+echo ""
+
+echo "unzipping libraries..."
+unzip -od "$tf" libraries/*.jar > /dev/null
+
+echo "unzipping built jar..."
+unzip -od "$tf" "$bf/$of" > /dev/null
+
+# workdir
+wd=$(pwd)
+
+cd "$bf"
+rm *.jar
+
+# go in because zip
+cd "$tf"
+
+echo "zipping everything together..."
+# zip -9 for best compression and smallest jar file
+zip "$wd/$bf/$of" -9r * > /dev/null
+
+echo "copying mod to Minecraft mods folder..."
+# copy to Minecraft mods folder
+cp "$wd/$bf/$of" ~/.minecraft/mods/
+
+# clean up
+rm -rf "$tf"

@@ -1,0 +1,16 @@
+{
+	"commands.mc_arduino.serial.list.title":                 "Available serial ports:",
+	"commands.mc_arduino.serial.list.entry":                 "   %s",
+	"commands.mc_arduino.serial.list.connectedEntry":        "   %s (connected)",
+
+	"commands.mc_arduino.serial.disconnect.success":         "Succesfully disconnected from port %s",
+	"commands.mc_arduino.serial.disconnect.fail":            "Failed to disconnect from %s",
+	"commands.mc_arduino.serial.disconnect.failUnknownPort": "Failed to disconnect",
+
+	"commands.mc_arduino.serial.connect.success":            "Succesfully connected to port %s",
+	"commands.mc_arduino.serial.connect.fail":               "Failed to connect to %s",
+	"commands.mc_arduino.serial.connect.failUnknownPort":    "Failed to connect",
+
+	"commands.mc_arduino.version.line1":                     "mc_arduino v%s by Antoni Spaanderman",
+	"commands.mc_arduino.version.line2":                     "GitHub: https://github.com/antonilol/mc_arduino"
+}
