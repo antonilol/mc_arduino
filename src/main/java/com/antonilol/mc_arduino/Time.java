@@ -57,7 +57,7 @@ public class Time {
 	}
 	
 	public boolean equalsIgnoreSeconds(Time other) {
-		return other == null ? false : h == other.getH() && m == other.getM();
+		return other == null ? false : h == other.h && m == other.m;
 	}
 
 	public int getH() {

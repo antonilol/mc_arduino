@@ -16,6 +16,10 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+
+	flatDir {
+		dirs 'libraries'
+	}
 }
 
 dependencies {
@@ -29,14 +33,10 @@ dependencies {
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-	
-	// Stop gradle from complaining about library imports
-	// Minecraft will complain though because it can't find the library
-	// so i wrote a wrapper script to unzip the mod and libs and
-	// zip them all together. And that actually worked first time!
-	// And yes, jars are zips.
-	// maybe someone can get this working with only gradle settings?                <---[help wanted here]
-	implementation files('libraries/jssc-2.8.0-arduino4.jar')
+
+	// from here extra dependencies
+
+	implementation name: 'jssc-2.8.0-arduino4'
 }
 
 processResources {
@@ -71,6 +71,9 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+
+	// works for now, also on windows and mac
+	from 'libraries/jssc_unzip'
 }
 
 // configure the maven publication

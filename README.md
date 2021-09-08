@@ -21,9 +21,9 @@ Start Minecraft and open a world or join a server.
 
 Have an arduino connected (or connect in now) with the [program](https://github.com/antonilol/mc_arduino/blob/master/mc-arduino/mc-arduino.ino) loaded.
 
-Type `/mc_arduino serial list` to list connected serial devices.
+Type `/mc_arduino serial list` to list serial devices.
 
-Type `/mc_arduino serial connect <device>` to start to Minecraft clock on the Arduino.
+Type `/mc_arduino serial connect <device>` to connect and start the Minecraft clock on the Arduino.
 
 Type `/mc_arduino serial disconnect` to stop it and make the serial port available again. (You can't upload any programs to an Arduino when the serial port is busy)
 
@@ -33,30 +33,44 @@ I will be adding a ledstrip to it later for the XP bar or smth
 
 ## Compiling
 
-#### Linux users:
+#### Unix
+
+Clone
 
 ```bash
-# clone
-git clone git@github.com:antonilol/mc_arduino.git
+git clone https://github.com/antonilol/mc_arduino.git
+```
+or [download zip](https://github.com/antonilol/mc_arduino/archive/refs/heads/master.zip) and unzip it.
 
-# compile
-./compile
+Enter the folder (`cd` or double click).
+
+If you downloaded zip make `gradlew` executable.
+
+```bash
+chmod +x gradlew
 ```
 
-If you download zip instead don't forget to `chmod +x gradlew compile`.
+To build it run
 
-#### Windows users:
+```bash
+./gradlew build
+```
 
-sorry, more info [here](https://github.com/antonilol/mc_arduino/blob/master/compile#L5).
+#### Windows
 
-#### Mac OS users:
+Clone or download like mentioned above and build with
 
-Maybe the `./compile` script works...
+```bash
+gradlew.bat build
+```
 
 ## Developing
 
-Clone just like mentioned above.
+Clone the repo.
 
 To get completions in your IDE (if applicable) run `./gradlew genSources` (unix) or `gradlew.bat genSources` (windows).
 
 More on that [here](https://fabricmc.net/wiki/tutorial:setup#generating_sources).
+
+
+

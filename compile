@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "This script is not needed anymore and will be removed soon"
+exit 0
+
 # hi !linux users:
 # this script will work on linux but surely not on w!nd0w$
 # w!nd0w$ users: use wsl, prebuilt releases, make a batch script

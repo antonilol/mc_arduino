@@ -32,6 +32,8 @@ public class Main implements ClientModInitializer {
 					cleared = false;
 				}
 				
+				prevTime = time;
+				
 				if (!xp.equals(prevXP)) {
 					prevXP = xp;
 					// TODO xp bar for ledstrip

@@ -8,6 +8,7 @@
   "authors": [
     "antonilol"
   ],
+
   "contact": {
     "homepage": "https://github.com/antonilol/mc_arduino",
     "sources":  "https://github.com/antonilol/mc_arduino",
@@ -23,7 +24,7 @@
       "com.antonilol.mc_arduino.Main"
     ]
   },
-  
+
   "mixins": [ ],
 
   "depends": {
@@ -32,9 +33,9 @@
     "minecraft": "1.17.x",
     "java": ">=16"
   },
-  "suggests": {
-    "another-mod": "*"
-  },
+
+  "suggests": { },
+
   "custom": {
     "modmenu": {
       "links": { }
