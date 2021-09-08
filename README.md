@@ -1,3 +1,6 @@
+[![build](https://github.com/antonilol/mc_arduino/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/antonilol/mc_arduino/actions/workflows/build.yml)
+
+
 # mc_arduino
 
 todo: write some more here
