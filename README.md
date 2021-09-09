@@ -12,6 +12,7 @@ Download the [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-ap
 Go to [Releases](https://github.com/antonilol/mc_arduino/releases) and download the latest release. Also put it in your mods folder.
 
 The `mods` folder can be found in [.minecraft](https://minecraft.fandom.com/wiki/.minecraft#Locating_.minecraft).
+If not, create it.
 
 Start Minecraft and open a world or join a server.
 
@@ -19,7 +20,7 @@ Have an arduino connected (or connect in now) with the [program](https://github.
 
 Type `/mc_arduino serial list` to list serial devices.
 
-Type `/mc_arduino serial connect <device>` to connect and start the Minecraft clock on the Arduino.
+Type `/mc_arduino serial connect <device>` to connect and start the Minecraft clock on the displays.
 
 Type `/mc_arduino serial disconnect` to stop it and make the serial port available again. (You can't upload any programs to an Arduino when the serial port is busy)
 
