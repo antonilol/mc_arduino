@@ -1,10 +1,6 @@
 [![build](https://github.com/antonilol/mc_arduino/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/antonilol/mc_arduino/actions/workflows/build.yml)
 
-
 # mc_arduino
-
-todo: write some more here
-
 
 
 ## Install and use
@@ -33,24 +29,24 @@ I will be adding a ledstrip to it later for the XP bar or smth
 
 ## Compiling
 
-#### Unix
+#### Linux and Mac OS
 
-Clone
+Clone the repo
 
 ```bash
 git clone https://github.com/antonilol/mc_arduino.git
 ```
-or [download zip](https://github.com/antonilol/mc_arduino/archive/refs/heads/master.zip) and unzip it.
+or download the [zip](https://github.com/antonilol/mc_arduino/archive/refs/heads/master.zip) and unzip it.
 
 Enter the folder (`cd` or double click).
 
-If you downloaded zip make `gradlew` executable.
+If you downloaded the zip make `gradlew` executable.
 
 ```bash
 chmod +x gradlew
 ```
 
-To build it run
+And finally, compile.
 
 ```bash
 ./gradlew build
@@ -73,4 +69,6 @@ To get completions in your IDE (if applicable) run `./gradlew genSources` (unix)
 More on that [here](https://fabricmc.net/wiki/tutorial:setup#generating_sources).
 
 
+## License
 
+MIT
