@@ -54,14 +54,10 @@ public class Commands {
 			})
 		).then(
 			literal("connect").then(
-				argument("port", StringWithSlashesArgumentType.string())
-				.suggests((c, b) -> {
-					for (String port : Comms.getSerialPorts()) {
-						b.suggest(port);
-					}
-					return b.buildFuture();
-				}).executes(c -> {
-					String port = StringWithSlashesArgumentType.getString(c, "port");
+				argument("port", new SerialPortArgumentType())
+				.suggests(new SerialPortArgumentType())
+				.executes(c -> {
+					String port = SerialPortArgumentType.getString(c, "port");
 					if (port != null) {
 						if (comms.connect(port)) {
 							c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.connect.success", port));
@@ -79,12 +75,12 @@ public class Commands {
 				})
 			)
 		);
-		
+
 		LiteralArgumentBuilder<FabricClientCommandSource> version =
 
 		literal("version").executes(c -> {
 			c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.version.line1", Main.VERSION));
-			c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.version.line2")); // TODO link
+			c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.version.line2")); // TODO is it possible to add a clickable link here?
 			return 1;
 		});
 		

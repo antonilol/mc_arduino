@@ -1,13 +1,15 @@
 {
   "schemaVersion": 1,
+
   "id": "mc_arduino",
+
   "version": "${version}",
 
   "name": "Minecraft Arduino",
+
   "description": "Displays Minecraft time as human time on a seven segment display via an Arduino",
-  "authors": [
-    "antonilol"
-  ],
+
+  "authors": [ "antonilol" ],
 
   "contact": {
     "homepage": "https://github.com/antonilol/mc_arduino",
@@ -16,13 +18,13 @@
   },
 
   "license": "MIT",
+
   "icon": "assets/mc_arduino/icon.png",
 
   "environment": "client",
+
   "entrypoints": {
-    "client": [
-      "com.antonilol.mc_arduino.Main"
-    ]
+    "client": [ "com.antonilol.mc_arduino.Main" ]
   },
 
   "mixins": [ ],
