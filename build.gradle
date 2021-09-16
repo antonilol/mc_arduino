@@ -72,6 +72,10 @@ jar {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
 
+	from("img/display128.png") {
+		rename { "assets/${project.archivesBaseName}/icon.png"}
+	}
+
 	// works for now, also on windows and mac
 	from 'libraries/jssc_unzip'
 }

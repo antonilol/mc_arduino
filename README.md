@@ -69,7 +69,6 @@ To get completions in your IDE (if applicable) run `./gradlew genSources` (unix)
 
 More on that [here](https://fabricmc.net/wiki/tutorial:setup#generating_sources).
 
-
 ## License
 
 MIT
