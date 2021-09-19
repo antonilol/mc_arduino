@@ -29,7 +29,7 @@ public class Main implements ClientModInitializer, StartTick {
 	@Override
 	public void onInitializeClient() {
 		
-		new Commands(comms);
+		Commands.register(comms);
 		
 		ClientTickEvents.START_CLIENT_TICK.register(this);
 	}

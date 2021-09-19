@@ -12,7 +12,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 
 public class Commands {
-	public Commands(Comms comms) {
+	public static void register(Comms comms) {
 		
 		LiteralArgumentBuilder<FabricClientCommandSource> serial =
 
