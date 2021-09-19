@@ -41,7 +41,7 @@ or download the [zip](https://github.com/antonilol/mc_arduino/archive/refs/heads
 
 Enter the folder (`cd` or double click).
 
-If you downloaded the zip make `gradlew` executable.
+If you downloaded the zip, make `gradlew` executable.
 
 ```bash
 chmod +x gradlew

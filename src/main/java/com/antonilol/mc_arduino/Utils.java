@@ -40,42 +40,6 @@ public class Utils {
 
 		return sb.toString();
 	}
-	
-	// minecraft commands do not accept a "/" in command arguments for some reason
-	// this method puts "quotes" around it but it can do way more like replacing the 
-	//  slashes with underscores (had this before). actually this method can change
-	//  the name in any way and still nothing fails as long as it does not return
-	//  the same name for different input values.
-	// this workaround can be removed if an argument (probably a custom one) type
-	//  allows slashes
-	
-	// DONE, made my own type
-	
-	/*
-	public static String changePortName(String original) {
-		return original;//"\"" + original + "\"";
-	}
-	
-	public static String[] changePortNames(String[] original) {
-		String[] output = original.clone();
-		
-		int i = 0;
-		for (String port : original) {
-			output[i++] = changePortName(port);
-		}
-		
-		return output;
-	}
-	
-	public static String findChangedPortName(String[] ports, String changedPort) {
-		for (String port : ports) {
-			if (changePortName(port).equals(changedPort)) {
-				return port;
-			}
-		}
-		return null;
-	}
-	*/
 }
 
 // vim: set ts=8 sw=8 tw=0 noet :
