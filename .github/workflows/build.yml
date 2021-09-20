@@ -30,13 +30,17 @@ jobs:
       - name: make gradle wrapper executable
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
-      - name: build
+      - name: normal build
+        if: ${{ runner.os != 'Linux' }}
         run: ./gradlew build
+      - name: multi version build
+        if: ${{ runner.os == 'Linux' }}
+        run: node buildForVersion 1.17.1 1.17 1.16.5 1.16.4 1.16.3 1.16.2 1.16 nolog
       - name: capture build artifacts
         if: ${{ runner.os == 'Linux' && matrix.java == '16' }} # Only upload artifacts built from latest java on one OS
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts
-          path: build/libs/
+          path: mcVersions/
 
 #  vim: set ts=8 sw=2 tw=0 et :
