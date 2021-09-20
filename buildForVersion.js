@@ -192,9 +192,12 @@ async function main() {
 	const prop = fs.readFileSync('gradle.properties').toString('utf-8');
 	fs.copyFileSync('gradle.properties', 'gradle.properties.old');
 
-	fs.readdirSync(buildFolder).forEach(file => {
-		rm(buildFolder + file);
-	});
+	try {
+		fs.readdirSync(buildFolder).forEach(file => {
+			rm(buildFolder + file);
+		});
+	} catch (e) {
+	}
 
 	loaderVersions.forEach((v, i) => {
 		v.fabricV = getFabricVersion(v);
