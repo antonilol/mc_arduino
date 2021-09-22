@@ -18,8 +18,8 @@ public class SerialPortArgumentType implements ArgumentType<String>, SuggestionP
 	
     private static Collection<String> EXAMPLES = new ArrayList<String>();
     static {
-        EXAMPLES.add("COM3"); // win
         EXAMPLES.add("/dev/ttyUSB5"); // linux
+        EXAMPLES.add("COM3"); // win
         EXAMPLES.add("/dev/tty.usbmodem123"); // mac
     }
  
@@ -28,7 +28,7 @@ public class SerialPortArgumentType implements ArgumentType<String>, SuggestionP
         return EXAMPLES;
     }
 	
-    public SerialPortArgumentType() { }
+    // public SerialPortArgumentType() { }
 
     public static String getString(final CommandContext<?> context, final String name) {
         return context.getArgument(name, String.class);
