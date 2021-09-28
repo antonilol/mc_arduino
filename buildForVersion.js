@@ -221,6 +221,8 @@ async function main() {
 	} catch (e) {
 	}
 
+	var oneFail = false;
+
 	loaderVersions.forEach((v, i) => {
 		v.fabricV = getFabricVersion(v);
 		rm('.gradle');
@@ -254,6 +256,7 @@ async function main() {
 			execSync('./gradlew build', { stdio: 'inherit' });
 		} catch (e) {
 			failed = true;
+			oneFail = true;
 		}
 
 
@@ -283,6 +286,8 @@ async function main() {
 	});
 
 	fs.copyFileSync('gradle.properties.old', 'gradle.properties');
+
+	process.exit(oneFail + 0);
 }
 
 main();

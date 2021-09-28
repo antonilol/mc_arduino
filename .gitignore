@@ -1,6 +1,6 @@
 bin/
 build/
-mcVersions
+mcVersions/
 
 .gradle/
 .settings/
@@ -8,5 +8,4 @@ mcVersions
 .classpath
 .project
 
-b
 gradle.properties.old
