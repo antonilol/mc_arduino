@@ -1,6 +1,4 @@
 /*
- * The MIT License (MIT)
- * 
  * Copyright (c) 2021 Antoni Spaanderman
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy

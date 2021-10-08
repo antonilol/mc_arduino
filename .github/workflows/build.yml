@@ -43,4 +43,4 @@ jobs:
           name: Artifacts
           path: mcVersions/
 
-#  vim: set ts=8 sw=2 tw=0 et :
+#  vim: set ts=2 sw=2 tw=0 et :
