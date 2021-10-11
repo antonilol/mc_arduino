@@ -44,9 +44,9 @@ public class Commands {
 					String connected = comms.getPort();
 					for (String port : Comms.getSerialPorts()) {
 						if (port.equals(connected)) {
-						c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.list.connectedEntry", port).formatted(Formatting.GREEN));
+							c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.list.connectedEntry", port).formatted(Formatting.GREEN));
 						} else {
-						c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.list.entry", port));
+							c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.list.entry", port));
 						}
 						
 					}
@@ -121,4 +121,3 @@ public class Commands {
 	}
 }
 
-// vim: set ts=8 sw=8 tw=0 noet :
