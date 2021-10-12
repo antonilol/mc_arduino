@@ -25,6 +25,7 @@ package com.antonilol.mc_arduino;
 import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.argument;
 import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
@@ -50,7 +51,7 @@ public class Commands {
 						}
 						
 					}
-					return 1;
+					return Command.SINGLE_SUCCESS;
 				})
 			).then(
 				literal("disconnect")
@@ -72,7 +73,7 @@ public class Commands {
 						}
 						c.getSource().sendFeedback(t);
 					}
-					return 1;
+					return Command.SINGLE_SUCCESS;
 				})
 			).then(
 				literal("connect").then(
@@ -83,7 +84,7 @@ public class Commands {
 						if (port != null) {
 							if (comms.connect(port)) {
 								c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.connect.success", port));
-							return 1;
+								return Command.SINGLE_SUCCESS;
 							}
 						}
 						final TranslatableText t;
@@ -93,7 +94,7 @@ public class Commands {
 							t = new TranslatableText("commands.mc_arduino.serial.connect.fail", port);
 						}
 						c.getSource().sendFeedback(t);
-						return 1;
+						return Command.SINGLE_SUCCESS;
 					})
 				)
 			)
@@ -104,7 +105,7 @@ public class Commands {
 			.executes(c -> {
 				c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.version.line1", Main.VERSION));
 				c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.version.line2")); // TODO is it possible to add a clickable link here?
-				return 1;
+				return Command.SINGLE_SUCCESS;
 			})
 		);
 		
