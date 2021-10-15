@@ -22,23 +22,15 @@
 
 package com.antonilol.mc_arduino;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-// public static utility methods
+/**
+ * public static utility methods
+ * @author antonilol
+ */
 public class Utils {
-	public static byte[] concat(byte[] a, byte[] b) throws IOException {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		outputStream.write(a);
-		outputStream.write(b);
-		byte c[] = outputStream.toByteArray();
-		return c;
-	}
-	
-	public static byte or(byte a, byte b) {
-		return (byte) (a | b);
-	}
-	
+	/**
+	 * Thrown when a number argument was outside the range
+	 * @author antonilol
+	 */
 	public static class NumberOutOfRangeException extends Exception {
 		private static final long serialVersionUID = 1L;
 		
@@ -47,6 +39,44 @@ public class Utils {
 		}
 	}
 	
+	/**
+	 * Concatenates two {@code byte} arrays
+	 * @param a {@code byte} array 1
+	 * @param b {@code byte} array 2
+	 * @return a {@code byte} array with the elements from {@code a} and {@code b}
+	 */
+	public static byte[] concat(byte[] a, byte[] b) {
+		byte[] c = new byte[a.length + b.length];
+		
+		int i = 0;
+		for (; i < a.length; i++) {
+			c[i] = a[i];
+		}
+		
+		for (int j = 0; i < c.length; i++, j++) {
+			c[i] = b[j];
+		}
+		
+		return c;
+	}
+	
+	/**
+	 * Binary {@code or} on two {@code byte}s
+	 * @param a {@code byte} 1
+	 * @param b {@code byte} 2
+	 * @return {@code byte} 1 {@code or} {@code byte} 2
+	 */
+	public static byte or(byte a, byte b) {
+		return (byte) (a | b);
+	}
+	
+	/**
+	 * Pads the input number with zeros from the left
+	 * and returns it as a {@link java.lang.String String}
+	 * @param n input number
+	 * @param length minimum ouput length
+	 * @return the padded string
+	 */
 	public static String pad(int n, int length) {
 		String inputString = Integer.toString(n);
 		final int l = inputString.length();

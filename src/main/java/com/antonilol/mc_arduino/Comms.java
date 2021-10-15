@@ -135,11 +135,7 @@ public class Comms {
 			return false;
 		}
 		byte[] message = {_7SEG};
-		try {
-			message = Utils.concat(message, disp);
-		} catch (IOException e) {
-			return false;
-		}
+		message = Utils.concat(message, disp);
 		serial.write(message);
 		return true;
 	}
