@@ -44,9 +44,9 @@ public class Serial implements SerialPortEventListener {
 
 	private SerialPort port;
 
-	public Serial(String iname) throws Exception {
+	public Serial(String name) throws Exception {
 		try {
-			port = new SerialPort(iname);
+			port = new SerialPort(name);
 			port.openPort();
 			boolean res = port.setParams(9600, 8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE, true, true);
 			if (!res) {
@@ -55,13 +55,13 @@ public class Serial implements SerialPortEventListener {
 			port.addEventListener(this);
 		} catch (SerialPortException e) {
 			if (e.getPortName().startsWith("/dev") && SerialPortException.TYPE_PERMISSION_DENIED.equals(e.getExceptionType())) {
-				throw new Exception("Error opening serial port " + iname + ". Try consulting the documentation at http://playground.arduino.cc/Linux/All#Permission");
+				throw new Exception("Error opening serial port " + name + ". Try consulting the documentation at http://playground.arduino.cc/Linux/All#Permission");
 			}
-			throw new Exception("Error opening serial port " + iname, e);
+			throw new Exception("Error opening serial port " + name, e);
 		}
 
 		if (port == null) {
-			throw new Exception("Serial port " + iname + " not found");
+			throw new Exception("Serial port " + name + " not found");
 		}
 	}
 
@@ -83,22 +83,26 @@ public class Serial implements SerialPortEventListener {
 	public synchronized void serialEvent(SerialPortEvent serialEvent) {
 		if (serialEvent.isRXCHAR()) {
 			try {
-				@SuppressWarnings("unused")
 				byte[] buf = port.readBytes(serialEvent.getEventValue());
-				
-				// do something with `buf` here
-				
+				Comms.getInstance().onMessage(buf);
 			} catch (SerialPortException e) {
 				errorMessage("serialEvent", e);
 			}
 		}
 	}
 
-	public void write(byte[] bytes) {
+	/**
+	 * Writes bytes to the serial port
+	 * @param bytes the message
+	 * @return {@code true} if the message was succesfully sent
+	 */
+	public boolean write(byte[] bytes) {
 		try {
 			port.writeBytes(bytes);
+			return true;
 		} catch (SerialPortException e) {
 			errorMessage("write", e);
 		}
+		return false;
 	}
 }

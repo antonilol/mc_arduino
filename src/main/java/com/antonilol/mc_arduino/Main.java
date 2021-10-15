@@ -29,29 +29,37 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 
 public class Main implements ClientModInitializer, StartTick {
-	
 	public static final String MOD_ID = "mc_arduino"; // is this needed? i saw other people do it in tutorials
-	public static final String VERSION = "1.0.1"; // updated by updateVersion script with sed :)
+	
+	/**
+	 * The version of this mod
+	 * <br>
+	 * Updated by <a href="https://github.com/antonilol/mc_arduino/blob/master/updateVersion">updateVersion</a>
+	 */
+	public static final String VERSION = "1.0.2";
+	
 	private Time prevTime = null;
 	private XP prevXP = null;
 	private boolean cleared = true;
 	
-	private Comms comms = new Comms();
-	
-	private void onTimeUpdate(Time time) {
-		comms.updateDisplay(comms.timeToDisplay(time));
-		cleared = false;
+	private boolean onTimeUpdate(Time time) {
+		boolean status = Comms.getInstance().updateDisplay(Comms.timeToDisplay(time));
+		cleared = !status;
+		return status;
 	}
 	
-	private void onXPUpdate(XP xp) {
+	private boolean onXPUpdate(XP xp) {
 		
-		// TODO xp bar for ledstrip
+		// TODO xp bar for led strip
+		
+		return true;
 	}
 	
 	@Override
 	public void onInitializeClient() {
+		new Comms();
 		
-		Commands.register(comms);
+		Commands.register();
 		
 		ClientTickEvents.START_CLIENT_TICK.register(this);
 	}
@@ -61,24 +69,27 @@ public class Main implements ClientModInitializer, StartTick {
 		ClientPlayerEntity player = client.player;
 
 		if (player != null) {
-			final XP xp = XP.fromPlayer(player);
+			
 			final Time time = Time.fromMinecraftTime(player.clientWorld.getTimeOfDay());
 			
 			if (!time.equalsIgnoreSeconds(prevTime)) {
-				onTimeUpdate(time);
-				prevTime = time;
+				if (onTimeUpdate(time)) {
+					prevTime = time;
+				}
 			}
+			
+			final XP xp = XP.fromPlayer(player);
 
 			if (!xp.equals(prevXP)) {
-				onXPUpdate(xp);
-				prevXP = xp;
+				if (onXPUpdate(xp)) {
+					prevXP = xp;
+				}
 			}
-		} else {
-			if (!cleared) {
-				comms.clearDisplay();
-				cleared = true;
-			}
+			
+		} else if (!cleared) {
+			cleared = Comms.getInstance().clearDisplay();
 		}
+		
 	}
 }
 

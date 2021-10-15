@@ -25,6 +25,8 @@
 // send types
 #define _7SEG 0
 #define LEDSTRIP 1
+#define CLEARLEDSTRIP 2
+#define CONNECTED 3
 // ...
 
 #define freq 120
@@ -47,6 +49,8 @@ uint8_t disps[DISPLAYS] = {0};
 
 void setup() {
   Serial.begin(9600);
+
+  Serial.write(CONNECTED);
 
   for (uint8_t i=0;i<8;i++) {
     pinMode(segmentPins[i], OUTPUT);
@@ -81,14 +85,15 @@ void loop() {
       if (Serial.available() > 3) {
         uint8_t buf[4];
         Serial.readBytes(buf, 4);
-        // TODO when i connect my ledstrip
-        //if (buf[0] == 0xff) {
-        //  FastLED...
-        //} else if (buf[0] < LEDS) {
-        //  FastLED...
-        //}
+        // TODO when i connect my led strip
+        // if (buf[0] < LEDS) {
+        //   FastLED...
+        // }
         tr = 0;
       }
+    } else if (type[0] == CLEARLEDSTRIP) {
+      // TODO when i connect my led strip
+      // FastLED...
     } else {
       tr = 0;
     }

@@ -34,7 +34,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 
 public class Commands {
-	public static void register(Comms comms) {
+	public static void register() {
 		
 		register(true,
 			literal("serial").then(
@@ -42,14 +42,13 @@ public class Commands {
 				.executes(c -> {
 					// TODO hover messages and click to (dis)connect
 					c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.list.title"));
-					String connected = comms.getPort();
+					String connected = Comms.getInstance().getPort();
 					for (String port : Comms.getSerialPorts()) {
 						if (port.equals(connected)) {
 							c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.list.connectedEntry", port).formatted(Formatting.GREEN));
 						} else {
 							c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.list.entry", port));
 						}
-						
 					}
 					return Command.SINGLE_SUCCESS;
 				})
@@ -57,12 +56,12 @@ public class Commands {
 				literal("disconnect")
 				.executes(c -> {
 					try {
-						comms.clearDisplay();
+						Comms.getInstance().clearDisplay();
 					} catch (NullPointerException e) {
 						// happens when comms.serial == null
 					}
-					String connected = comms.getPort();
-					if (comms.disconnect()) {
+					String connected = Comms.getInstance().getPort();
+					if (Comms.getInstance().disconnect()) {
 						c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.disconnect.success", connected));
 					} else {
 						TranslatableText t;
@@ -82,7 +81,7 @@ public class Commands {
 					.executes(c -> {
 						String port = SerialPortArgumentType.getString(c, "port");
 						if (port != null) {
-							if (comms.connect(port)) {
+							if (Comms.getInstance().connect(port)) {
 								c.getSource().sendFeedback(new TranslatableText("commands.mc_arduino.serial.connect.success", port));
 								return Command.SINGLE_SUCCESS;
 							}

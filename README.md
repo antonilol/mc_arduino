@@ -26,7 +26,7 @@ Type `/mc_arduino serial disconnect` to stop it and make the serial port availab
 
 `/mc_arduino serial` is also available as `/serial`.
 
-I will be adding a ledstrip to it later for the XP bar or smth
+I will be adding a led strip to it later for the XP bar
 
 ## Compiling
 
