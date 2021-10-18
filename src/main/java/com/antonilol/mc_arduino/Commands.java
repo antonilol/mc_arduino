@@ -25,6 +25,7 @@ package com.antonilol.mc_arduino;
 import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.argument;
 import static net.fabricmc.fabric.api.client.command.v1.ClientCommandManager.literal;
 
+import com.antonilol.mc_arduino.Utils.TimeSource;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
@@ -93,6 +94,24 @@ public class Commands {
 							t = new TranslatableText("commands.mc_arduino.serial.connect.fail", port);
 						}
 						c.getSource().sendFeedback(t);
+						return Command.SINGLE_SUCCESS;
+					})
+				)
+			)
+		);
+		
+		register(false,
+			literal("display").then(
+				literal("setTimeSource").then(
+					literal("minecraft")
+					.executes(c -> {
+						Main.timeSource = TimeSource.MINECRAFT;
+						return Command.SINGLE_SUCCESS;
+					})
+				).then(
+					literal("real_life")
+					.executes(c -> {
+						Main.timeSource = TimeSource.REAL_LIFE;
 						return Command.SINGLE_SUCCESS;
 					})
 				)

@@ -28,6 +28,16 @@ package com.antonilol.mc_arduino;
  */
 public class Utils {
 	/**
+	 * Used to indicate where to get time from for
+	 * the 7 segment display
+	 * @author antonilol
+	 */
+	public static enum TimeSource {
+		MINECRAFT,
+		REAL_LIFE;
+	}
+	
+	/**
 	 * Thrown when a number argument was outside the range
 	 * @author antonilol
 	 */

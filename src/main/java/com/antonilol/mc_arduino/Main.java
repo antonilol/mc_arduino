@@ -22,6 +22,8 @@
 
 package com.antonilol.mc_arduino;
 
+import com.antonilol.mc_arduino.Utils.TimeSource;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.StartTick;
@@ -36,24 +38,13 @@ public class Main implements ClientModInitializer, StartTick {
 	 * <br>
 	 * Updated by <a href="https://github.com/antonilol/mc_arduino/blob/master/updateVersion">updateVersion</a>
 	 */
-	public static final String VERSION = "1.0.2";
+	public static final String VERSION = "1.0.3";
 	
-	private Time prevTime = null;
-	private XP prevXP = null;
 	private boolean cleared = true;
 	
-	private boolean onTimeUpdate(Time time) {
-		boolean status = Comms.getInstance().updateDisplay(Comms.timeToDisplay(time));
-		cleared = !status;
-		return status;
-	}
-	
-	private boolean onXPUpdate(XP xp) {
-		
-		// TODO xp bar for led strip
-		
-		return true;
-	}
+	public static TimeSource timeSource = TimeSource.MINECRAFT;
+	private Time prevTime = null;
+	private XP prevXP = null;
 	
 	@Override
 	public void onInitializeClient() {
@@ -63,14 +54,19 @@ public class Main implements ClientModInitializer, StartTick {
 		
 		ClientTickEvents.START_CLIENT_TICK.register(this);
 	}
-
+	
 	@Override
 	public void onStartTick(MinecraftClient client) {
 		ClientPlayerEntity player = client.player;
 
 		if (player != null) {
 			
-			final Time time = Time.fromMinecraftTime(player.clientWorld.getTimeOfDay());
+			final Time time;
+			if (timeSource == TimeSource.MINECRAFT) {
+				time = Time.fromMinecraftTime(player.clientWorld.getTimeOfDay());
+			} else {
+				time = Time.now();
+			}
 			
 			if (!time.equalsIgnoreSeconds(prevTime)) {
 				if (onTimeUpdate(time)) {
@@ -90,6 +86,19 @@ public class Main implements ClientModInitializer, StartTick {
 			cleared = Comms.getInstance().clearDisplay();
 		}
 		
+	}
+	
+	private boolean onTimeUpdate(Time time) {
+		boolean status = Comms.getInstance().updateDisplay(Comms.timeToDisplay(time));
+		cleared = !status;
+		return status;
+	}
+
+	private boolean onXPUpdate(XP xp) {
+		
+		// TODO xp bar for led strip
+		
+		return true;
 	}
 }
 
