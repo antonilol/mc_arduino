@@ -57,35 +57,36 @@ public class Main implements ClientModInitializer, StartTick {
 	
 	@Override
 	public void onStartTick(MinecraftClient client) {
-		ClientPlayerEntity player = client.player;
-
-		if (player != null) {
-			
-			final Time time;
-			if (timeSource == TimeSource.MINECRAFT) {
-				time = Time.fromMinecraftTime(player.clientWorld.getTimeOfDay());
-			} else {
-				time = Time.now();
-			}
-			
-			if (!time.equalsIgnoreSeconds(prevTime)) {
-				if (onTimeUpdate(time)) {
-					prevTime = time;
+		if (Comms.getInstance().connected()) {
+			ClientPlayerEntity player = client.player;
+	
+			if (player != null) {
+				
+				final Time time;
+				if (timeSource == TimeSource.MINECRAFT) {
+					time = Time.fromMinecraftTime(player.clientWorld.getTimeOfDay());
+				} else {
+					time = Time.now();
 				}
-			}
-			
-			final XP xp = XP.fromPlayer(player);
-
-			if (!xp.equals(prevXP)) {
-				if (onXPUpdate(xp)) {
-					prevXP = xp;
+				
+				if (!time.equalsIgnoreSeconds(prevTime)) {
+					if (onTimeUpdate(time)) {
+						prevTime = time;
+					}
 				}
+				
+				final XP xp = XP.fromPlayer(player);
+	
+				if (!xp.equals(prevXP)) {
+					if (onXPUpdate(xp)) {
+						prevXP = xp;
+					}
+				}
+				
+			} else if (!cleared) {
+				cleared = Comms.getInstance().clearDisplay();
 			}
-			
-		} else if (!cleared) {
-			cleared = Comms.getInstance().clearDisplay();
 		}
-		
 	}
 	
 	private boolean onTimeUpdate(Time time) {
