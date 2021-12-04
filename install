@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ver=$(cat gradle.properties | grep mod_version | sed 's/.*= //')
+
+# remove older installed versions
+rm ~/.minecraft/mods/mc_arduino*
+
+cp "build/libs/mc_arduino-$ver.jar" ~/.minecraft/mods/
+

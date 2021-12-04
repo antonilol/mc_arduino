@@ -1,9 +1,0 @@
-#!/bin/bash
-
-rm {~/.minecraft/mods,build/libs}/mc_arduino*
-
-./gradlew build
-
-rm build/libs/*dev.jar
-
-cp build/libs/mc_arduino* ~/.minecraft/mods
