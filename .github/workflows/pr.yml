@@ -3,11 +3,9 @@
 # certain platforms or Java versions, and provides a first line of defense
 # against bad commits.
 
-name: Build
+name: Pull request build
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -28,6 +26,9 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: build
-        run: ./gradlew build
+        run: ./gradlew --no-daemon build
+      - name: check assets
+        if: ${{ runner.os == 'Linux' }}
+        run: utils/checkAssets.js
 
 #  vim: set ts=2 sw=2 tw=0 et :
