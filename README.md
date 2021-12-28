@@ -1,4 +1,4 @@
-[![build](https://github.com/antonilol/mc_arduino/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/antonilol/mc_arduino/actions/workflows/build.yml)
+[![Build](https://github.com/antonilol/mc_arduino/actions/workflows/push.yml/badge.svg)](https://github.com/antonilol/mc_arduino/actions/workflows/push.yml)
 
 # mc_arduino
 
