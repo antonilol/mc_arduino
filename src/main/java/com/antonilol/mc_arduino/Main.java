@@ -38,7 +38,7 @@ public class Main implements ClientModInitializer, StartTick {
 	 * <br>
 	 * Updated by <a href="https://github.com/antonilol/mc_arduino/blob/master/updateVersion">updateVersion</a>
 	 */
-	public static final String VERSION = "1.1.0";
+	public static final String VERSION = "1.1.1";
 	
 	private boolean cleared = true;
 	
